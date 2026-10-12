@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OrbitLive - Real-Time Software Satellite Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Include Satellite.js for real orbital math calculations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/satellite.js/4.0.0/satellite.min.js"></script>
+</head>
+<body>
+
+    <header class="top-nav">
+        <div class="brand">🛰️ OrbitLive Tracker</div>
+        <div class="nav-stats">
+            <span>Status: <b id="connectionStatus" style="color: #3fb950;">Connecting to Space Feed...</b></span>
+        </div>
+    </header>
+
+    <main class="dashboard-layout">
+        <!-- Sidebar with Satellite Selector & Telemetry -->
+        <section class="control-panel">
+            <h2>Active Spacecraft</h2>
+            <div class="sat-select-group">
+                <button class="sat-btn active" onclick="switchSatellite('ISS', '25544')">ISS (Space Station)</button>
+                <button class="sat-btn" onclick="switchSatellite('NOAA 18', '28654')">NOAA 18 (Weather)</button>
+                <button class="sat-btn" onclick="switchSatellite('Hubble', '20580')">Hubble Telescope</button>
+            </div>
+
+            <div class="telemetry-card">
+                <h3>Live Telemetry Feed</h3>
+                <div class="telemetry-item">
+                    <span>Target:</span>
+                    <strong id="satName">ISS (ZARYA)</strong>
+                </div>
+                <div class="telemetry-item">
+                    <span>Latitude:</span>
+                    <strong id="satLat">0.00°</strong>
+                </div>
+                <div class="telemetry-item">
+                    <span>Longitude:</span>
+                    <strong id="satLng">0.00°</strong>
+                </div>
+                <div class="telemetry-item">
+                    <span>Altitude:</span>
+                    <strong id="satAlt">0.00 km</strong>
+                </div>
+                <div class="telemetry-item">
+                    <span>Velocity:</span>
+                    <strong id="satVel">0.00 km/s</strong>
+                </div>
+            </div>
+        </section>
+
+        <!-- Visual Map / Radar Simulation Area -->
+        <section class="visual-container">
+            <div class="radar-viewport" id="radarMap">
+                <div class="radar-sweep"></div>
+                <div class="grid-lines"></div>
+                <div class="target-blip" id="targetBlip">
+                    <div class="blip-pulse"></div>
+                </div>
+                <div class="map-overlay-label">LIVE ORBITAL RADAR: <span id="activeRadarLabel">ISS</span></div>
+            </div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
